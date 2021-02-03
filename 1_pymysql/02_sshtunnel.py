@@ -3,8 +3,8 @@ from sshtunnel import SSHTunnelForwarder
 
 
 if __name__ == '__main__':
-    with SSHTunnelForwarder(('jiniworld.me'),
-                            ssh_username='jini', ssh_pkey='C:/Users/jini/.ssh/apple.pem', ssh_port=22222,
+    with SSHTunnelForwarder(ssh_address_or_host='jiniworld.me', ssh_port=22222,
+                            ssh_username='jini', ssh_pkey='C:/Users/jini/.ssh/apple.pem',
                             remote_bind_address=('127.0.0.1', 3306)) as tunnel:
         with pymysql.connect(host='127.0.0.1', user='test2', password='test2', port=tunnel.local_bind_port,
                              db='test_db', charset="utf8", cursorclass=pymysql.cursors.DictCursor) as conn:
